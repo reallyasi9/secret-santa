@@ -1,0 +1,10 @@
+emails:
+  Person One: email1@fake.com
+  Person Two: person2@notreal.org
+  Person Three: p3@notreal.biz
+  Person Four: four.person@fake.come
+  Person Five: person.5@fake.com
+
+forbidden:
+  Person One: [Person Three, Person Four]
+  Person Four: [Person One]
