@@ -68,7 +68,7 @@ def parse_yaml(arg):
     """
     try:
         with open(arg, 'r') as f:
-            return yaml.load(f)
+            return yaml.safe_load(f)
     except OSError as err:
         raise argparse.ArgumentTypeError("Unable to read file '{:s}': {}".format(arg, err))
     except yaml.YAMLError as err:
@@ -102,7 +102,9 @@ def main():
 
     emails = config['emails']
     users = emails.keys()
-    forbidden = config['forbidden']
+    forbidden = {}
+    if "forbidden" in config and config['forbidden']:
+        forbidden = config['forbidden']
     if not allow_self:
         for u in users:
             forbidden[u] = forbidden.get(u, []) + [u]
